@@ -1,0 +1,183 @@
+board7=["-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-",
+        "-","-","-","-","-","-","-"]
+
+game_still_going7=True
+
+winner7=None
+
+current_player7="X"
+
+def show_board_7():
+    
+    print(board7[0] + " | " + board7[1] + " | " + board7[2] + " | " + board7[3] +" | " + board7[4] +" | " + board7[5] +" | " + board7[6] )
+    print(board7[7] + " | " + board7[8] + " | " + board7[9] + " | " + board7[10] +" | " + board7[11] +" | " + board7[12] +" | " + board7[13] )
+    print(board7[14] + " | " + board7[15] + " | " + board7[16] + " | " + board7[17] +" | " + board7[18] +" | " + board7[19] +" | " + board7[20] )
+    print(board7[21] + " | " + board7[22] + " | " + board7[23] + " | " + board7[24] +" | " + board7[25] +" | " + board7[26] +" | " + board7[27] )
+    print(board7[28] + " | " + board7[29] + " | " + board7[30] + " | " + board7[31] +" | " + board7[32] +" | " + board7[33] +" | " + board7[34] )
+    print(board7[35] + " | " + board7[36] + " | " + board7[37] + " | " + board7[38] +" | " + board7[39] +" | " + board7[40] +" | " + board7[41] )
+    print(board7[42] + " | " + board7[43] + " | " + board7[44] + " | " + board7[45] +" | " + board7[46] +" | " + board7[47] +" | " + board7[48] )
+
+def start_game7():
+  show_board_7()
+  while game_still_going7:
+
+    handle_turn7(current_player7)
+    check_game_over7() 
+    flip_player7()
+  
+  if winner7=="X"  or winner7=="O":
+    print(winner7+" won")
+  elif winner7==None:
+    print("Tie")     
+
+
+def handle_turn7(player7):
+  pos7=input("Choose a position from 1-49: ")
+  pos7=int(pos7)-1
+  while board7[pos7]!="-" :
+    print("Please choose an empty position\n")
+    pos7=input("Choose a position from 1-49: ")
+    pos7=int(pos7)-1
+  board7[pos7]=current_player7
+
+  show_board_7()
+
+
+def check_game_over7():
+  check_win7()
+  check_tie7()
+
+def check_win7():
+  global winner7
+  row_winner7=check_rows7()
+  column_winner7=check_column7()
+  diagonal_winner7=check_diagonal7()
+
+  if row_winner7:
+   winner7=row_winner7
+  
+  elif column_winner7:
+   winner7=column_winner7
+
+  elif diagonal_winner7:
+   winner7=diagonal_winner7
+  else :
+   winner7=None
+
+
+
+def check_rows7():
+  global game_still_going7
+  
+  for i in range(0,4):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+  
+  for i in range(7,11):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(14,18):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(21,25):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(28,32):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(35,39):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+   
+  for i in range(42,46):
+   if board7[i] == board7[i+1] == board7[i+2] ==board7[i+3] != "-":
+     game_still_going7 = False
+     return board7[i] 
+  return None   
+
+
+def check_column7():
+  global game_still_going7
+  
+  for i in range(0,7):
+   if board7[i] == board7[i+7] == board7[i+14] ==board7[i+21] != "-" :
+    game_still_going7 = False
+    return board7[i] 
+  
+  for i in range(7,14):
+   if board7[i] == board7[i+7] == board7[i+14] ==board7[i+21] != "-" :
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(14,21):
+   if board7[i] == board7[i+7] == board7[i+14] ==board7[i+21] != "-" :
+     game_still_going7 = False
+     return board7[i] 
+
+  for i in range(21,28):
+   if board7[i] == board7[i+7] == board7[i+14] ==board7[i+21] != "-" :
+     game_still_going7 = False
+     return board7[i] 
+
+  
+  return None 
+
+
+def check_diagonal7():
+  global game_still_going7
+
+  for i in range(0,4):
+    for j in range(0,4):
+      ind = i*7 + j;
+      if board7[ind]==board7[ind+8]==board7[ind+16]==board7[ind+24]!="-":
+        game_still_going7 = False
+        return board7[ind]
+  
+  for i in range(0,4):
+    for j in range(3,7):
+      ind = i*7 + j;
+      if board7[ind]==board7[ind+6]==board7[ind+12]==board7[ind+18]!="-":
+        game_still_going7 = False
+        return board7[ind]
+  
+  return None
+      
+
+def check_tie7():
+  global game_still_going
+  
+  if "-" not in board7:
+    game_still_going = False
+    return True
+  
+  else:
+    return False
+
+
+def flip_player7():
+  global current_player7
+  
+  if current_player7 == "X":
+    current_player7 = "O"
+  
+  elif current_player7 == "O":
+    current_player7 = "X"  
+
+
+
+start_game7()
